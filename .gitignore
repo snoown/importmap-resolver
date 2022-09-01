@@ -131,3 +131,8 @@ dist
 
 # JavaScript
 *.js
+*.js.map
+
+# TypeScript
+*.d.ts
+*.d.ts.map
