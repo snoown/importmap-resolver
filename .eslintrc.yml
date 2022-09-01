@@ -9,5 +9,12 @@ extends:
   - airbnb-base
   - airbnb-typescript/base
   - prettier
+rules:
+  import/extensions:
+    - error
+    - ignorePackages
+  no-console: off
+  '@typescript-eslint/no-explicit-any': off
+  '@typescript-eslint/no-non-null-assertion': off
 ignorePatterns:
   - '*.js'
