@@ -1,6 +1,33 @@
 {
   "name": "importmap-resolver",
+  "version": "0.1.0",
+  "description": "Resolve and replace imported module names with importmap",
+  "keywords": ["importmap", "import", "map", "esmodule", "front-end", "deployment", "deploy"],
+  "license": "MIT",
+  "author": "snoown",
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/snoown/importmap-resolver.git"
+  },
+  "bugs": {
+    "url": "https://github.com/snoown/importmap-resolver/issues"
+  },
+  "homepage": "https://github.com/snoown/importmap-resolver#readme",
+
   "type": "module",
+  "main": "componrnt/resolve.js",
+  "types": "component/resolve.d.ts",
+  "scripts": {
+    "build": "tsc",
+    "prepare": "npm run build"
+  },
+  "bin": {
+    "importx": "bin/command.js"
+  },
+  "engines": {
+    "node": ">=14"
+  },
+
   "devDependencies": {
     "@types/js-yaml": "^4.0.5",
     "@types/node": "^18.7.11",
