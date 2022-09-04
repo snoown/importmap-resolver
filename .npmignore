@@ -1,0 +1,8 @@
+# Configuration files
+.eslintrc.yml
+.prettierrc.yml
+tsconfig.json
+
+# Unnecessary files for command
+/bin/*
+!/bin/*.js
