@@ -35,7 +35,7 @@ Also, note that YAML distinguishes between strings, numbers, etc. Therefore, `1:
 importmap <include-path> [options]
 ```
 
-If a directory path is specified, the files with .js or .mjs extensions are searched recursively.
+If a directory path is specified, the files with `.js` or `.mjs` extensions are searched recursively.
 
 #### Options
 
