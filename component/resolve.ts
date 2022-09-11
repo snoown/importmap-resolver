@@ -30,7 +30,7 @@ const search = (includePath: string): string[] => {
   return filePaths;
 };
 
-const RESOLVE_PATTERN = /(import(?:.+from)? *["'])(.+)(["'])/g;
+const TARGET_PATTERN = /([mt] *)?(["'])(.*?)(?<!\\)\2|`[^]*?(?<!\\)`|\/\/.*?\n|\/\*[^]*?\*\//g;
 
 export const resolve = (moduleName: string): string => {
   for (let i = 0; i < map.length; i += 1) {
@@ -42,10 +42,10 @@ export const resolve = (moduleName: string): string => {
   return moduleName;
 };
 
-const replacer = (_: string, before: string, moduleName: string, after: string): string =>
-  before + resolve(moduleName) + after;
+const replacer = (whole: string, separator?: string, mark?: string, moduleName?: string): string =>
+  typeof separator === 'undefined' ? whole : `${separator}${mark!}${resolve(moduleName!)}${mark!}`;
 
-export const replace = (code: string): string => code.replace(RESOLVE_PATTERN, replacer);
+export const replace = (code: string): string => code.replace(TARGET_PATTERN, replacer);
 
 export const execute = (includePath: string, isMinify = false, minifyOptions?: object) => {
   const filePaths = search(includePath);
