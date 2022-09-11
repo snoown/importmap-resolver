@@ -35,9 +35,7 @@ const TARGET_PATTERN = /([mt] *)?(["'])(.*?)(?<!\\)\2|`[^]*?(?<!\\)`|\/\/.*?\n|\
 export const resolve = (moduleName: string): string => {
   for (let i = 0; i < map.length; i += 1) {
     const [regexp, resolvedName] = map[i];
-    if (regexp.test(moduleName)) {
-      return moduleName.replace(regexp, resolvedName);
-    }
+    if (regexp.test(moduleName)) return moduleName.replace(regexp, resolvedName);
   }
   return moduleName;
 };
