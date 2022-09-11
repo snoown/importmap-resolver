@@ -21,7 +21,7 @@ program
   .usage('<include-path> [options]')
   .argument('<include-path>')
   .option('-m, --minify', 'Enable code minification')
-  .option('-e, --ecma <version>', 'Specify ECMAScript version: 5, 2015 or 2016...', parseInt)
+  .option('-e, --ecma <version>', 'Specify an ECMAScript version such as 5, 2015, etc', parseInt)
   .action((includePath: string, options: { minify: boolean; ecma?: number }) => {
     if (typeof options.ecma === 'number') minifyOptions.ecma = options.ecma;
     execute(includePath, options.minify, minifyOptions);
