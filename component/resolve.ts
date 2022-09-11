@@ -45,7 +45,7 @@ export const resolve = (moduleName: string): string => {
 const replacer = (_: string, before: string, moduleName: string, after: string): string =>
   before + resolve(moduleName) + after;
 
-export const replace = (string: string): string => string.replace(RESOLVE_PATTERN, replacer);
+export const replace = (code: string): string => code.replace(RESOLVE_PATTERN, replacer);
 
 export const execute = (includePath: string, isMinify = false, minifyOptions?: object) => {
   const filePaths = search(includePath);

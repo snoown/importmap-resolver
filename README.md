@@ -55,7 +55,7 @@ import { resolve, replace, execute } from "importmap-resolver";
 
   Returns resolved module name.
 
-- `replace(string: string): string`
+- `replace(code: string): string`
 
   Returns a code that resolves and replaces module names in the given code.
 
