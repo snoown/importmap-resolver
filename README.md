@@ -59,6 +59,6 @@ import { resolve, replace, execute } from "importmap-resolver";
 
   Returns a code that resolves and replaces module names in the given code.
 
-- `execute(includePath: string, isMinify = false, minifyOptions?: object): void`
+- `execute(includePath: string, shouldMinify = false, minifyOptions?: object): void`
 
   The command uses this function. The main difference from command line execution is that you can set the [minify options](https://terser.org/docs/api-reference#minify-options).

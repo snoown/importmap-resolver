@@ -47,13 +47,13 @@ const replacer = (whole: string, separator?: string, mark?: string, moduleName?:
 
 export const replace = (code: string): string => code.replace(TARGET_PATTERN, replacer);
 
-export const execute = (includePath: string, isMinify = false, minifyOptions?: object) => {
+export const execute = (includePath: string, shouldMinify = false, minifyOptions?: object) => {
   const filePaths = search(includePath);
   for (let i = 0; i < filePaths.length; i += 1) {
     const filePath = filePaths[i];
     const code = fs.readFileSync(filePath, 'utf8');
     const replacedCode = replace(code);
-    if (isMinify) {
+    if (shouldMinify) {
       minify(replacedCode, minifyOptions)
         .then((minifiedCode) => fs.promises.writeFile(filePath, minifiedCode.code!))
         .catch((error) => console.error(error));
