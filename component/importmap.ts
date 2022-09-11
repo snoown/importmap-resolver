@@ -4,7 +4,7 @@ import yaml from 'js-yaml';
 
 const MAP_FILENAME_PRIORITY = ['.importmap.yaml', '.importmap.yml'];
 
-const recruciveSearch = (absoluteDirPath: string): string => {
+const recursiveSearch = (absoluteDirPath: string): string => {
   const dirents = fs.readdirSync(absoluteDirPath, { withFileTypes: true });
   const fileNames: string[] = [];
   for (let i = 0; i < dirents.length; i += 1) {
@@ -19,10 +19,10 @@ const recruciveSearch = (absoluteDirPath: string): string => {
 
   return absoluteDirPath === path.parse(absoluteDirPath).root
     ? ''
-    : recruciveSearch(path.dirname(absoluteDirPath));
+    : recursiveSearch(path.dirname(absoluteDirPath));
 };
 
-const search = (): string => recruciveSearch(process.cwd());
+const search = (): string => recursiveSearch(process.cwd());
 
 const recordValidator = (record: [string, any]): record is [string, string] =>
   typeof record[1] === 'string';

@@ -6,7 +6,7 @@ import { map } from './importmap.js';
 
 const ESMODULE_EXTENSIONS = ['.js', '.mjs'];
 
-const recruciveSearch = (dirPath: string): string[] => {
+const recursiveSearch = (dirPath: string): string[] => {
   const dirents = fs.readdirSync(dirPath, { withFileTypes: true });
   const filePaths: string[] = [];
   for (let i = 0; i < dirents.length; i += 1) {
@@ -14,7 +14,7 @@ const recruciveSearch = (dirPath: string): string[] => {
     if (dirent.isFile() && ESMODULE_EXTENSIONS.includes(path.extname(dirent.name)))
       filePaths.push(path.join(dirPath, dirent.name));
     else if (dirent.isDirectory() && dirent.name !== 'node_modules')
-      filePaths.push(...recruciveSearch(path.join(dirPath, dirent.name)));
+      filePaths.push(...recursiveSearch(path.join(dirPath, dirent.name)));
   }
   return filePaths;
 };
@@ -25,7 +25,7 @@ const search = (includePath: string): string[] => {
   if (stat.isFile() && ESMODULE_EXTENSIONS.includes(path.extname(includePath))) {
     filePaths.push(path.normalize(includePath));
   } else if (stat.isDirectory()) {
-    filePaths = recruciveSearch(includePath);
+    filePaths = recursiveSearch(includePath);
   }
   return filePaths;
 };
