@@ -62,3 +62,35 @@ import { resolve, replace, execute } from "importmap-resolver";
 - `execute(includePath: string, shouldMinify = false, minifyOptions?: object): void`
 
   The command uses this function. The main difference from command line execution is that you can set the [minify options](https://terser.org/docs/api-reference#minify-options).
+
+## Loading AMD (Asynchronous Module Definition)
+
+This package can convert the import statements loading AMD. Meet these conditions to use this feature.
+
+- Module paths (URL or GET parameter) include the string `amd` or `umd` sandwiched between the symbols.
+- Specified modules output the variable declared in each import statement.
+
+See the following examples for more information.
+
+``` javascript
+// 'react.js' outputs 'React'
+import React from './amd/react.js'
+import * as React from './amd/react.js'
+// ↓
+import './amd/react.js'
+
+// 'react.umd.js' outputs 'useState'
+import { useState } from './react.umd.js'
+// ↓
+import './react.umd.js'
+
+// 'react.js' outputs 'React'
+import React, { useState as ustate } from './react.js?amd';
+// ↓
+import './react.js?amd'; const { useState: ustate } = React;
+
+// 'react.js' outputs 'React'
+import React, * as react from './react.js?name=val&module=umd';
+// ↓
+import './react.js?name=val&module=umd'; const react = React;
+```
