@@ -69,7 +69,7 @@ import { resolve, replace, execute } from "importmap-resolver";
 
 This package can convert the import statements loading AMD. Meet these conditions to use this feature.
 
-- Module paths (URL or GET parameter) include the string `amd` or `umd` sandwiched between the symbols.
+- Resolved module names (URL or GET parameter) include the string `amd` or `umd` sandwiched between the symbols.
 - Specified modules output the variable declared in each import statement.
 
 See the following examples for more information.
