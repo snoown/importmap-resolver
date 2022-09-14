@@ -1,7 +1,7 @@
 {
   "name": "importmap-resolver",
   "version": "0.4.1",
-  "description": "Resolve and replace imported module names with importmap",
+  "description": "Resolve module names with importmap",
   "keywords": [
     "importmap",
     "import",
