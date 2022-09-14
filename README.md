@@ -2,7 +2,7 @@
 
 [![license](https://img.shields.io/github/license/snoown/importmap-resolver)](https://github.com/snoown/importmap-resolver/blob/main/LICENSE)
 
-This package is for resolving and replacing imported module names with `importmap`.
+This package is for resolving module names with `importmap`.
 
 ## Installation
 
@@ -14,16 +14,16 @@ npm install --save-dev importmap-resolver
 
 ### Create an `importmap` file
 
-First, create a file `.importmap.yaml` or `.importmap.yml` in your project root. It is searched from the working directory toward the root and uses the first found. Therefore, it is possible to separate `importmap` for each directory as needed.
+First, create the file `.importmap.yaml` or `.importmap.yml`. This package searches it from the working directory toward the root and uses the first found one.
 
-The map can use a [regular expression](https://developer.mozilla.org/en-US/docs/Web/JavaScript/Guide/Regular_Expressions/Cheatsheet) as well as strings. Note the order, as the mappings written earlier are preferred.
+You can use [regular expressions](https://developer.mozilla.org/en-US/docs/Web/JavaScript/Guide/Regular_Expressions/Cheatsheet) as well as strings in the map. Note its order because the mappings written earlier are preferred.
 
 ``` yaml
 # Mapping with strings
 a: https://example-a.ex/a.js
 b: https://example-b.ex/b.js
 
-# Mapping with a regular expression
+# Mapping with the regular expressions
 (.+): https://example-$1.ex/$1.js
 ```
 
@@ -35,15 +35,17 @@ Also, note that YAML distinguishes between strings, numbers, etc. Therefore, `1:
 importmap <include-path> [options]
 ```
 
-If a directory path is specified, the files with `.js` or `.mjs` extensions are searched recursively.
+If a directory path is specified, search files under it with the extension `.js` or `.mjs` recursively.
 
 #### Options
 
 - `--minify`: Enable code minification.
 
-- `--ecma <version>`: Specify an ECMAScript version such as 5, 2015, etc. It may optimize code minification.
+- `--ecma <version>`: Specify an ECMAScript version such as 5, 2015, etc. It helps to optimize code minification.
 
 ## API Usage
+
+First, load this package with the following import statement.
 
 ``` javascript
 import { resolve, replace, execute } from "importmap-resolver";
@@ -53,15 +55,15 @@ import { resolve, replace, execute } from "importmap-resolver";
 
 - `resolve(moduleName: string): string`
 
-  Returns resolved module name.
+  Convert the module name to resolved one.
 
 - `replace(code: string): string`
 
-  Returns a code that resolves and replaces module names in the given code.
+  Convert module names in the code to resolved ones.
 
 - `execute(includePath: string, shouldMinify = false, minifyOptions?: object): void`
 
-  The command uses this function. The main difference from command line execution is that you can set the [minify options](https://terser.org/docs/api-reference#minify-options).
+  The command process uses this function. The [minify options](https://terser.org/docs/api-reference#minify-options) are only available from API.
 
 ## Loading AMD (Asynchronous Module Definition)
 
